@@ -23,4 +23,9 @@ public class WebDriverConfigurations {
 
         return driver;
     }
+
+    public static void TerminateDriver() throws InterruptedException {
+        Thread.sleep(10000);
+        driver.quit();
+    }
 }

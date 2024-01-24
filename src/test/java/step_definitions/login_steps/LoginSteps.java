@@ -1,5 +1,6 @@
 package step_definitions.login_steps;
 
+import io.cucumber.java.AfterAll;
 import io.cucumber.java.BeforeAll;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -15,6 +16,11 @@ public class LoginSteps {
     @BeforeAll
     public static void before_all(){
         WebDriverConfigurations.ConfigureChromeWebDriver();
+    }
+
+    @AfterAll
+    public static void after_all() throws InterruptedException {
+        WebDriverConfigurations.TerminateDriver();
     }
 
     @Given("que eu esteja na página de login")

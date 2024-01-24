@@ -66,4 +66,13 @@ public class Behaviors extends WebDriverConfigurations {
             LogElement_Input(text, elementXpath);
         }
     }
+
+    public static WebElement GetElementByXPath(String elementXpath){
+        WebElement element = GetElement(GetElementBy.XPath, elementXpath);
+
+        if(element != null){
+            return element;
+        }
+        return null;
+    }
 }
