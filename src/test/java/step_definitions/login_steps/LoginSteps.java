@@ -5,6 +5,9 @@ import io.cucumber.java.BeforeAll;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.es.Dado;
+import io.cucumber.java.it.Quando;
+import io.cucumber.java.pt.Entao;
 import org.junit.jupiter.api.Assertions;
 import pages.home_page.HomePage;
 import pages.login_page.LoginPage;
@@ -23,36 +26,71 @@ public class LoginSteps {
         WebDriverConfigurations.TerminateDriver();
     }
 
-    @Given("que eu esteja na página de login")
-    public void que_eu_esteja_na_página_de_login() {
+    @Dado("estar na página de login")
+    public void estar_na_página_de_login() {
         loginPage.GoToMainPage();
     }
 
-    @When("eu inserir credenciais válidas")
-    public void eu_inserir_credenciais_válidas() {
+    @Quando("inserir credenciais válidas, clicar no botão entrar")
+    public void inserir_credenciais_válidas_clicar_no_botão_entrar()  {
         loginPage.EnterEmail("automation@automation.com");
         loginPage.EnterPassword("12345");
-    }
-
-    @When("clico no botão entrar")
-    public void clico_no_botão_entrar() {
         loginPage.ClickEnterButton();
     }
 
-    @When("eu inserir senha inválida e login válido")
-    public void eu_inserir_senha_inválida_e_login_válido() {
+    @Quando("inserir login válido e senha inválida, clicar no botão entrar")
+    public void inserir_login_válido_e_senha_inválida_clicar_no_botão_entrar() {
         loginPage.EnterEmail("automation@automation.com");
         loginPage.EnterPassword("12346");
+        loginPage.ClickEnterButton();
     }
 
-    @Then("não devo ser redirecionado para a tela inicial")
-    public void não_devo_ser_redirecionado_para_a_tela_inicial() {
-        loginPage.ValidateLoginScreen();
+    @Quando("inserir login inválido e senha válida, clicar no botão entrar")
+    public void inserir_login_inválido_e_senha_válida_clicar_no_botão_entrar() {
+        loginPage.EnterEmail("automation@automation.co");
+        loginPage.EnterPassword("12345");
+        loginPage.ClickEnterButton();
     }
 
-    @Then("devo ser redirecionado para a tela inicial")
-    public void devo_ser_redirecionado_para_a_tela_inicial() {
-        homePage.ValidateHomeScreen();
+    @Quando("inserir login inválido e senha inválida, clicar no botão entrar")
+    public void inserir_login_inválido_e_senha_inválida_clicar_no_botão_entrar() {
+        loginPage.EnterEmail("automation@automation.");
+        loginPage.EnterPassword("5699aS1!%¨^");
+        loginPage.ClickEnterButton();
+    }
+
+    @Quando("inserir e-mail vazio e campo senha preenchido, clicar no botão entrar")
+    public void inserir_e_mail_vazio_e_campo_senha_preenchido_clicar_no_botão_entrar() {
+        loginPage.EnterEmail("");
+        loginPage.EnterPassword("12345");
+        loginPage.ClickEnterButton();
+    }
+
+    @Quando("inserir e-mail e campo senha vazio, clicar no botão entrar")
+    public void inserir_e_mail_e_campo_senha_vazio_clicar_no_botão_entrar() {
+        loginPage.EnterEmail("automation@automation.com");
+        loginPage.EnterPassword("");
+        loginPage.ClickEnterButton();
+    }
+
+    @Quando("campo e-mail vazio e campo senha vazio, clicar no botão entrar")
+    public void campo_e_mail_vazio_e_campo_senha_vazio_clicar_no_botão_entrar() {
+        loginPage.EnterEmail("");
+        loginPage.EnterPassword("");
+        loginPage.ClickEnterButton();
+    }
+
+    @Entao("deve ser redirecionado para a tela inicial")
+    public void deve_ser_redirecionado_para_a_tela_inicial() { homePage.ValidateHomeScreen();
+    }
+
+    @Entao("não deve ser redirecionado para a tela inicial, deve mostrar a mensagem {string}")
+    public void não_deve_ser_redirecionado_para_a_tela_inicial_deve_mostrar_a_mensagem(String expected_message) {
+        loginPage.ValidateMessageWrongCredentials(expected_message);
+    }
+
+    @Entao("não deve ser redirecionado para a tela inicial, deve mostrar a mensagem {string} e {string}")
+    public void não_deve_ser_redirecionado_para_a_tela_inicial_deve_mostrar_a_mensagem_e(String string, String string2) {
 
     }
 }

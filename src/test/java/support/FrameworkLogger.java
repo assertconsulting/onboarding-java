@@ -43,4 +43,13 @@ public class FrameworkLogger {
         System.out.println(MessageFormat.format("\t The value \"{0}\" was inserted on element \"{1}\"", text, webElement));
         System.out.println(MessageFormat.format("\t Foi inserido o valor \"{0}\" no campo \"{1}\"", text, webElement));
     }
+
+    public static void LogStringAssertions(String expected_message, String actual_message){
+        System.out.println("");
+        LogPreviousMethod(4);
+        System.out.println(MessageFormat.format("\t Expected message: \"{0}\" ", expected_message));
+        System.out.println(MessageFormat.format("\t Received message: \"{0}\" ", actual_message));
+        System.out.println(MessageFormat.format("\t Mensagem esperada: \"{0}\" ", expected_message));
+        System.out.println(MessageFormat.format("\t Mensagem recebida: \"{0}\" ", actual_message));
+    }
 }

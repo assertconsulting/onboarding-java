@@ -8,7 +8,8 @@ import static support.FrameworkLogger.*;
 public class Behaviors extends WebDriverConfigurations {
     public static enum GetElementBy{ID, XPath}
 
-    public static WebElement GetElement(GetElementBy by, String webElement){
+    // não utilizar diretamente
+    private static WebElement GetElement(GetElementBy by, String webElement){
 
         WebElement element = null;
 
