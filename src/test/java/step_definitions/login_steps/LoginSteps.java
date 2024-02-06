@@ -54,7 +54,7 @@ public class LoginSteps {
 
     @Quando("inserir login inválido e senha inválida, clicar no botão entrar")
     public void inserir_login_inválido_e_senha_inválida_clicar_no_botão_entrar() {
-        loginPage.EnterEmail("automation@automation.");
+        loginPage.EnterEmail("automation@automation.con");
         loginPage.EnterPassword("5699aS1!%¨^");
         loginPage.ClickEnterButton();
     }
@@ -90,7 +90,7 @@ public class LoginSteps {
     }
 
     @Entao("não deve ser redirecionado para a tela inicial, deve mostrar a mensagem {string} e {string}")
-    public void não_deve_ser_redirecionado_para_a_tela_inicial_deve_mostrar_a_mensagem_e(String string, String string2) {
-
+    public void não_deve_ser_redirecionado_para_a_tela_inicial_deve_mostrar_a_mensagem_e(String expected_message_a, String expected_message_b) {
+        loginPage.ValidateMessagesWrongCredentials(expected_message_a, expected_message_b);
     }
 }
